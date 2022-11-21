@@ -1,36 +1,6 @@
 import glob
 import pandas as pd
 from datetime import datetime
-from bs4 import BeautifulSoup   # for web scrapping
-import requests                 # for to download a web page
-
-
-def download_html(url = "http://www.ibm.com"):
-    html_data  = requests.get(url).text
-    # create a soup object using the variable 'html_data'
-    soup_data = BeautifulSoup(html_data, "html.parser")
-    return soup_data
-
-
-def extract_html():
-    # TODO:
-    extract_data = pd.DataFrame(columns=["Rank", "Country", "Population", "Area", "Density"])
-    
-    # find all rows
-    for row in tables[table_index].tbody.find_all("tr"):
-        # find all columns
-        col = row.find_all("td")
-        if (col != []):
-            # TODO:
-            rank = col[0].text
-            country = col[1].text
-            population = col[2].text.strip()
-            area = col[3].text.strip()
-            density = col[4].text.strip()
-            # append data
-            extract_data = extract_data.append({"Rank":rank, "Country":country, "Population":population, "Area":area, "Density":density}, ignore_index=True)
-    
-    return extract_data
 
 
 def extract_from_json(file_to_process):
